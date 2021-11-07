@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Datatable Example</title>
+    <link rel="stylesheet" href="/assets/DataTables-1.11.3/jquery.dataTables.min.css">
+</head>
+<body>
+<h1 class="h1">Hello</h1>
+<table id="datatable-rest" class="table table-bordered">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>ADDRESS</th>
+    </tr>
+    </thead>
+</table>
+<script src="/assets/jQuery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="/assets/DataTables-1.11.3/jquery.dataTables.min.js"></script>
+<script>
+    $('#datatable-rest').DataTable({
+        "processing": true,
+        "serverSide": true,
+        "bSort": true,
+        "ajax": {
+            "url": "/dt",
+            "type": "POST",
+            "dataType": "json",
+            "contentType": "application/json; charset=utf-8",
+            "data":
+                function (d) {
+                    return JSON.stringify(d);
+                },
+            "dataFilter": function (response) {
+                // this to see exactly what is being sent back
+                return response
+            },
+            "error": function (xhr, error, code) {
+                console.log(error);
+                console.log(code);
+            }
+        },
+        "columns": [
+            {"data": "id"},
+            {"data": "name"},
+            {"data": "address"}
+        ]
+    });
+</script>
+</body>
+</html>
