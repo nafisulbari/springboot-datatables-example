@@ -14,5 +14,6 @@ import lombok.Setter;
 public class Search {
 
     private String value;
+
     private String regexp;
 }

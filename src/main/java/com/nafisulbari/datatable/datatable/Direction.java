@@ -5,7 +5,6 @@ package com.nafisulbari.datatable.datatable;
  */
 
 public enum Direction {
-
     asc,
     desc
 }

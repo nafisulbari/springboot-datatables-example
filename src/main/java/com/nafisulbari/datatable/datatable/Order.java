@@ -14,6 +14,6 @@ import lombok.*;
 public class Order {
 
     private Integer column;
-    private Direction dir;
 
+    private Direction dir;
 }

@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 /**
  * @author Ahmed Nafisul Bari
  */
@@ -18,20 +16,13 @@ public class PersonServiceImpl implements PersonService {
     @Autowired
     private PersonRepository personRepository;
 
-    public void saveListOfPersons(List<Person> personList) {
-        personRepository.saveAll(personList);
-    }
-
-    public List<Person> getAllPersons() {
-        return personRepository.findAll();
-    }
-
     public Page<Person> getPaginatedDatatable(PagingRequest pagingRequest) {
+        //Mapping DataTables PagingRequest to spring's Pageable
         Pageable pageable = PagingUtil.toPageable(pagingRequest);
         String searchTerm = PagingUtil.toSearchTerm(pagingRequest);
 
         org.springframework.data.domain.Page<Person> filteredRecordsPage =
-                personRepository.findAll(pageable);
+                personRepository.getPagedData_jpql(searchTerm, pageable);
 
         int availableFilteredRecords = (int)filteredRecordsPage.getTotalElements();
         int totalRecords = (int)personRepository.count();

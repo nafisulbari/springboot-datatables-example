@@ -10,9 +10,5 @@ import java.util.List;
  */
 public interface PersonService {
 
-    void saveListOfPersons(List<Person> personList);
-
-    List<Person> getAllPersons();
-
     Page<Person> getPaginatedDatatable(PagingRequest pagingRequest);
 }

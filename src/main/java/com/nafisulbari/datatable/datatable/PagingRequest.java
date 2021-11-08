@@ -16,10 +16,12 @@ import lombok.Setter;
 public class PagingRequest {
 
     private int start;
+
     private int length;
 
     private List<Order> order;
-    private List<Column> columns;
-    private Search search;
 
+    private List<Column> columns;
+
+    private Search search;
 }
