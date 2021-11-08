@@ -29,11 +29,14 @@
             "contentType": "application/json; charset=utf-8",
             "data":
                 function (d) {
+                    // this to see what is being sent to the server
+                    console.log(d);
                     return JSON.stringify(d);
                 },
             "dataFilter": function (response) {
-                // this to see exactly what is being sent back
-                return response
+                // this to see what is being received from the server
+                console.log(response);
+                return response;
             },
             "error": function (xhr, error, code) {
                 alert(error + ' : ' + code);
